@@ -7,7 +7,7 @@ import com.google.gson.JsonObject;
 public class Main {
 
 	public static void main(String[] args) {
-		String receipt = "Base64 encoded receipt data from app here";
+		String receipt = "Receipt data from app here";
 		
 		try{
 			//validate the receipt

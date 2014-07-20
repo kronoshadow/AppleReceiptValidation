@@ -1,5 +1,6 @@
 package com.example.apple;
 
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,12 +29,15 @@ public class AppleReceiptValidation {
 	/**
 	 * Validates an Apple app store receipt to verify a purchase was made.
 	 * @see <a href="https://developer.apple.com/library/ios/releasenotes/General/ValidateAppStoreReceipt/Chapters/ValidateRemotely.html#//apple_ref/doc/uid/TP40010573-CH104-SW1">https://developer.apple.com/library/ios/releasenotes/General/ValidateAppStoreReceipt/Chapters/ValidateRemotely.html#//apple_ref/doc/uid/TP40010573-CH104-SW1</a>
-	 * @param reciept a <code>String</code> containing the base64 encoded receipt data of the in app purchase
+	 * @param reciept a <code>String</code> containing the receipt data of the in app purchase
 	 * @param test a <code>boolean</code> to indicate whether the the validation process should use Apple's sandbox for testing
 	 * @return a Google Gson <code>JsonObject</code> containing the JSON returned from the API
 	 * @throws AppleServiceFailedException gets thrown when the response from the Apple API server responded in an unexpected way
 	 */
 	public static JsonObject validateReciept(String receipt, boolean test) throws AppleReceiptValidationFailedException{
+		
+		//encode receipt data using base64
+		receipt = new String(Base64.getEncoder().encode(receipt.getBytes()));
 		
 		//prepare a JSON with the receipt data for a request to Apple
 		Map<String,String> receiptData = new HashMap<String,String>();
