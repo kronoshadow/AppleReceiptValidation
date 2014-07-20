@@ -10,7 +10,7 @@ public class Main {
 		String receipt = "Receipt data from app here";
 		
 		try{
-			//validate the receipt
+			//validate the receipt using the sandbox
 			JsonObject responseJson = AppleReceiptValidation.validateReciept(receipt, true);
 			//prints response
 			System.out.println(responseJson);
